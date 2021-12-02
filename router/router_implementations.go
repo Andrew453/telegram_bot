@@ -176,11 +176,6 @@ func (r *Router) CallbackHandler(cq *tbot.CallbackQuery) {
 	case "/readall":
 		r.ReadAllNotes(msg)
 	}
-
-	//r.votings[votingID] = vtng
-	//buttons := makeButtons()
-	//r.Client.EditMessageReplyMarkup(cq.Message.Chat.ID, cq.Message.MessageID, tbot.OptInlineKeyboardMarkup(buttons))
-
 }
 
 func makeButtons() *tbot.InlineKeyboardMarkup {
