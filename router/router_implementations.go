@@ -45,7 +45,7 @@ func (r Router)CreateNote(message *tbot.Message) {
 	}
 	time.Sleep(time.Millisecond)
 	text := message.Text
-	reg:= regexp.MustCompile(`/create-note Class:(.+) Name:(.+) Text:(.+)`)
+	reg:= regexp.MustCompile(`/create Class:(.+) Name:(.+) Text:(.+)`)
 	arr := reg.FindStringSubmatch(text)
 	if len(arr) != 4 {
 		r.Client.SendMessage(message.Chat.ID,fmt.Sprintf("Failed creating note \n" +
@@ -78,7 +78,7 @@ func (r *Router) ReadNoteByName(message *tbot.Message) {
 	}
 	time.Sleep(time.Millisecond)
 	text := message.Text
-	reg:= regexp.MustCompile(`/read-note Name:(.+)`)
+	reg:= regexp.MustCompile(`/read Name:(.+)`)
 	arr := reg.FindStringSubmatch(text)
 	if len(arr) != 2 {
 		r.Client.SendMessage(message.Chat.ID,fmt.Sprintf("Failed reading Note: \n" +
@@ -175,6 +175,8 @@ func (r *Router) CallbackHandler(cq *tbot.CallbackQuery) {
 		r.ReadNoteByName(msg)
 	case "/readall":
 		r.ReadAllNotes(msg)
+	default:
+		r.Client.SendMessage(cq.Message.Chat.ID,"Не понимаю, о чем ты")
 	}
 }
 
