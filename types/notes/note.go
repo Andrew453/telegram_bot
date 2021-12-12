@@ -13,8 +13,4 @@ type Note struct {
 func NewNote(class string, name string, text string) *Note {
 	return &Note{Class: class, Name: name, Text: text}
 }
-func (n *Note) GetClass(){
-
-}
-
 

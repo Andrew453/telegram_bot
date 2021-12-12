@@ -2,7 +2,7 @@ package app
 
 import (
 	"TelegramBot/config"
-	"TelegramBot/router"
+	"TelegramBot/models_implementations/router"
 	"github.com/pkg/errors"
 	"github.com/yanzay/tbot/v2"
 )
@@ -10,7 +10,6 @@ import (
 type Bot struct {
 	config config.Configuration
 	router *router.Router
-	//client *tbot.Client
 	server *tbot.Server
 }
 
@@ -31,15 +30,15 @@ func (b *Bot) Start () (err error) {
 	b.server.HandleMessage("/start", b.router.StartMsg)
 	b.server.HandleCallback(b.router.CallbackHandler)
 	b.server.HandleMessage("/help", b.router.Help)
-	b.server.HandleMessage("/create *", b.router.CreateNote)
+	b.server.HandleMessage("/create *", b.router.CreateNoteText)
 	b.server.HandleMessage("/readall", b.router.ReadAllNotes)
 	b.server.HandleMessage("/read", b.router.ReadNoteByName)
+	b.server.HandleMessage("Тип: *",b.router.СreateNote)
 	return b.server.Start()
 }
 
 
 func (b *Bot) Stop () {
-	b.router.WriteToJson()
 }
 
 func(b *Bot) manage () (err error) {
