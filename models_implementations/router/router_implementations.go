@@ -113,7 +113,6 @@ func (r *Router) StartMsg(m *tbot.Message) {
 
 func (r *Router) CallbackHandler(cq *tbot.CallbackQuery) {
 	r.Client.AnswerCallbackQuery(cq.ID, tbot.OptText("Хороший выбор, мой дружок"))
-	fmt.Println(cq.Data)
 	msg := new(tbot.Message)
 	msg = cq.Message
 	if strings.Contains(cq.Data, "/note") {
